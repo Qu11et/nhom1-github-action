@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Install Trivy
         run: |
-          wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.45.1_Linux-64bit.tar.gz | tar xz
+          wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.57.1_Linux-64bit.tar.gz | tar xz
           sudo mv trivy /usr/local/bin/
       - name: docker pull image
         run: docker pull qu1et/swiggy-clone:latest
