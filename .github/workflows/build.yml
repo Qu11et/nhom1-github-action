@@ -47,4 +47,4 @@ jobs:
       # - uses: sonarsource/sonarqube-quality-gate-action@master
       #   timeout-minutes: 5
       #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 5th try
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 6th try
