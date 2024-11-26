@@ -30,7 +30,18 @@ jobs:
           docker login -u ${{ secrets.Dockerhub_username }} -p ${{ secrets.Dockerhub_token }}
           docker push qu1et/swiggy-clone:latest
         env:
-          DOCKER_CLI_ACI: 1    
+          DOCKER_CLI_ACI: 1
+deploy:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+      - name: docker pull image
+        run: docker pull qu1et/swiggy-clone:latest
+      - name: Image scan
+        run: trivy image qu1et/swiggy-clone:latest > trivyimagedeploy.txt
+      - name: Deploy to container
+        run: docker run -d --name swiggy-clone -p 3000:3000 qu1et/swiggy-clone:latest
+
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: sonarsource/sonarqube-quality-gate-action@master
