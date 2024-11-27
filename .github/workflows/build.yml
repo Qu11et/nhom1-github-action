@@ -31,4 +31,14 @@ jobs:
           docker push qu1et/swiggy-nhom1:latest
         env:
           DOCKER_CLI_ACI: 1
-          
+
+  deploy:
+   needs: build
+   runs-on: [self-hosted]
+   steps:
+      - name: docker pull image
+        run: docker pull qu1et/swiggy-nhom1:latest
+      - name: Image scan
+        run: trivy image qu1et/swiggy-nhom1:latest > trivyimagedeploy.txt
+      - name: Deploy to container
+        run: docker run -d --name swiggy-nhom1 -p 3000:3000 qu1et/swiggy-nhom1:latest
