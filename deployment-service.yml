@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: swiggy
-        image: qu1et/swiggy-clone:latest
+        image: qu1et/swiggy-nhom1:latest
         ports:
         - containerPort: 3000   # Use port 3000
 
