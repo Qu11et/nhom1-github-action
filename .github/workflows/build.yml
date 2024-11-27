@@ -40,5 +40,7 @@ jobs:
         run: docker pull qu1et/swiggy-nhom1:latest
       - name: Image scan
         run: trivy image qu1et/swiggy-nhom1:latest > trivyimagedeploy.txt
-      - name: Deploy to container
-        run: docker run -d --name swiggy-nhom1 -p 3000:3000 qu1et/swiggy-nhom1:latest
+      - name: Update kubeconfig
+        run: aws eks --region ap-south-1 update-kubeconfig --name EKS_CLOUD
+      - name: Deploy to kubernetes
+        run: kubectl apply -f deployment-service.yml
